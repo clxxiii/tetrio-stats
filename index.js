@@ -90,13 +90,14 @@ async function getUserData() {
     let user = urlParams.get("user");
 
     let params = {
-      method: 'POST',
-      mode: 'no-cors',
+      method: 'GET',
       headers: {
-        'Access-Control-Allow-Origin': "https://clxxiii.github.io"
+        'Content-Type': 'application/json'
       }
     }
     let response = await fetch(API_URL + user, params)
+
+    console.log(response)
   }
 }
 async function updateData() {
