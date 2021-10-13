@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap');
+
+@font-face {
+  src: url('src/fonts/hun2.ttf');
+  font-family: 'HUN';
+}
+@font-face {
+  src: url('src/fonts/cr.ttf');
+  font-family: 'CR';
+}
+@font-face {
+  src: url('src/fonts/cb.ttf');
+  font-family: 'CB';
+}
+
+body {
+    font-family: 'HUN';
+    font-size: 18px;
+    color: white;
+}
+
+#main {
+  width: 20em;
+  height: 20em;
+  padding: 20px 20px 20px 20px;
+  background-color: #243e25;
+  border-top: 3px solid #45794f;
+  /* box-shadow: 0 0 48px #0002; */
+}
+
+#nameRankTR {
+  height: 30%;
+}
+#userName {
+  text-align: left;
+  font-size: 32px;
+}
+
+#userTR {
+  font-family: 'CB';
+  text-align: left;
+  /* padding-bottom: 15%; */
+  color: #AAAAAA;
+}
+#userRankIcon {
+  display: inline;
+  vertical-align: middle;
+  text-align: right;
+}
+#subscript {
+  color: #888888;
+  font-size: 16px;
+  font-family: 'CB'
+}
