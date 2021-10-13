@@ -92,7 +92,7 @@ async function getUserData() {
     let params = {
       method: 'POST',
       headers: {
-        'Access-Control-Allow-Origin': "clxxiii.github.io"
+        'Access-Control-Allow-Origin': "https://clxxiii.github.io"
       }
     }
     let response = await fetch(API_URL + user, params)
