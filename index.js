@@ -91,6 +91,7 @@ async function getUserData() {
 
     let params = {
       method: 'POST',
+      mode: 'no-cors',
       headers: {
         'Access-Control-Allow-Origin': "https://clxxiii.github.io"
       }
