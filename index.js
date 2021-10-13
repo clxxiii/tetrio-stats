@@ -103,7 +103,6 @@ async function getUserData() {
 }
 async function updateData() {
   let json = testJson;
-  getUserData();
   let userRank = json.data.user.league.rank;
   rankImage.setAttribute("src", `src/ranks/` + userRank + `.png`);
   userName.innerHTML = json.data.user.username;
