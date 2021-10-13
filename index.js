@@ -91,6 +91,7 @@ async function getUserData() {
 
     let params = {
       method: 'GET',
+      mode: 'no-cors',
       headers: {
         'Content-Type': 'application/json'
       }
