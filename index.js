@@ -96,9 +96,9 @@ async function getUserData() {
         'Content-Type': 'application/json'
       }
     }
-    let response = await fetch(API_URL + user, params)
+    let response = await fetch(API_URL, params)
 
-    console.log(response)
+    console.log(response.json().cache.cached_until)
   }
 
 
