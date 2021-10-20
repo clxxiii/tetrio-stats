@@ -56,7 +56,7 @@ async function getUserData() {
 
 }
 async function updateData() {
-  let json = testjson;
+  let json = await getUserData();
   console.log(json)
   let userRank = json.data.user.league.rank;
   userProfile.setAttribute("src", "https://tetr.io/user-content/avatars/" + json.data.user._id + ".jpg?rv=" + json.data.user.avatar_revision )

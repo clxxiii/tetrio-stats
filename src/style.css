@@ -1,15 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap');
 
 @font-face {
-  src: url('src/fonts/hun2.ttf');
+  src: url('fonts/hun2.ttf');
   font-family: 'HUN';
 }
 @font-face {
-  src: url('src/fonts/cr.ttf');
+  src: url('fonts/cr.ttf');
   font-family: 'CR';
 }
 @font-face {
-  src: url('src/fonts/cb.ttf');
+  src: url('fonts/cb.ttf');
   font-family: 'CB';
 }
 
