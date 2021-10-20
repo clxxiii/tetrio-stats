@@ -4,7 +4,6 @@ const userTR = document.getElementById("userTR");
 const API_URL = "https://7yortti0f2.execute-api.us-east-2.amazonaws.com/api";
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
-// const axios = require('axios').default;
 const callTime = new Date().getTime();
 const testJson = {
    "success":true,
@@ -84,7 +83,7 @@ const rankColors = {
   "Z": "",
 };
 async function getUserData() {
-  let currentJson = testJson
+  let currentJson = localStorage.getItem("tetrioStatsUserData")
   if (testJson.cache.cached_until > callTime) { return currentJson } // Only make a call if the current data is outdated
   else {
     let user = urlParams.get("user");
@@ -97,14 +96,16 @@ async function getUserData() {
       }
     }
     let response = await fetch(API_URL, params)
+    response = await response.json();
 
-    console.log(response.json().cache.cached_until)
+    return response
   }
 
 
 }
 async function updateData() {
-  let json = testJson;
+  let json = getUserData();
+  
   let userRank = json.data.user.league.rank;
   rankImage.setAttribute("src", `src/ranks/` + userRank + `.png`);
   userName.innerHTML = json.data.user.username;
