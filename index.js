@@ -84,7 +84,7 @@ const rankColors = {
 };
 async function getUserData() {
   let currentJson = JSON.parse(localStorage.getItem("tetrioStatsUserData"))
-  if (testJson.cache.cached_until > callTime) { console.log("using cached data"); return currentJson  } // Only make a call if the current data is outdated
+  if (currentJson.cache.cached_until > callTime) { console.log("using cached data"); return currentJson  } // Only make a call if the current data is outdated
   else {
     let user = urlParams.get("user");
 
