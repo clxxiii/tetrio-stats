@@ -59,8 +59,6 @@ async function getUserData() {
     }
   }
 
-
-}
 async function updateData() {
   let json = await getUserData();
   try {
