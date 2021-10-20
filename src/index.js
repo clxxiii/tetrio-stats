@@ -63,8 +63,8 @@ async function getUserData() {
   }
 
 async function updateData() {
-  // let json = await getUserData();
-  let json = testjson;
+  let json = await getUserData();
+  // let json = testjson;
   try {
     console.log(json)
     nameRankTR.style.filter = "blur(0px)";
