@@ -11,7 +11,6 @@ const API_URL = "https://7yortti0f2.execute-api.us-east-2.amazonaws.com/api?user
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const callTime = new Date().getTime();
-let testjson = {"success":true,"data":{"user":{"_id":"607757ae8ce31d6ec6610f8a","username":"fgam3r","role":"user","ts":"2021-04-14T20:59:26.481Z","badges":[],"xp":990344,"gamesplayed":461,"gameswon":187,"gametime":285664.5182222221,"country":"NL","supporter_tier":0,"verified":false,"league":{"gamesplayed":332,"gameswon":175,"rating":10661.717322730039,"glicko":1422.2132067729272,"rd":70.700843752591,"rank":"a-","apm":20.6,"pps":0.96,"vs":42.31,"decaying":false,"standing":16615,"percentile":0.5198535623767953,"standing_local":98,"prev_rank":"b+","prev_at":17257,"next_rank":"a","next_at":14702,"percentile_rank":"a-"},"avatar_revision":1618475770146,"friend_count":12}},"cache":{"status":"miss","cached_at":1634746831312,"cached_until":1634747131312}}
 
 let user = urlParams.get("user");
 const rankColors = {
@@ -42,7 +41,7 @@ async function getUserData() {
     if (currentJson == null) currentJson = { "data":{"user":{"username": 0}}, "cache":{"cached_until": 0} }
     // Only make a call if the current data is outdated
     console.log("Caching Information: " + currentJson.cache.cached_until + " > " + callTime)
-    if (currentJson.data.user.username == user && currentJson.cache.cached_until > callTime) { console.log("using cached data"); return currentJson  }
+    if (currentJson.cache.cached_until > callTime) { console.log("Using Cached Data"); return currentJson  }
     else {
       let params = {
         method: 'GET',
@@ -65,10 +64,9 @@ async function getUserData() {
 
 async function updateData() {
   let json = await getUserData();
+  console.log(json)
 
-  // let json = testjson;
   try {
-    console.log(json)
     // Animation
     userProfile.style.filter = "opacity(100)";
     nameRankTR.style.gap = "4rem";
@@ -79,11 +77,14 @@ async function updateData() {
     nameRankTR.style.filter = "blur(0px)";
 
     let userRank = json.data.user.league.rank;
-    main.style.background = rankColors[userRank]
+    // Set profile if ti exists, otherwise remove the deadspace
     if (!(json.data.user.avatar_revision == undefined)) {
       userProfile.setAttribute("src", "https://tetr.io/user-content/avatars/" + json.data.user._id + ".jpg?rv=" + json.data.user.avatar_revision )
     }
     else { userProfile.style.width = 0; }
+
+    // Set divs content to API values
+    main.style.background = rankColors[userRank]    ;
     rankImage.setAttribute("src", `https://tetr.io/res/league-ranks/` + userRank + `.png`);
     userName.innerHTML = json.data.user.username;
     userTR.innerHTML = (Math.round(json.data.user.league.rating * 10) ) / 10 + "<span id=subscript><sub>TR </sub></span>";
