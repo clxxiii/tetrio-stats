@@ -52,6 +52,7 @@ async function getUserData() {
       localStorage.setItem("tetrioStatsUserData", JSON.stringify(response));
 
       return response;
+      }
     }
     catch (error) {
       localStorage.removeItem("tetrioStatsUserData");
