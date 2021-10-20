@@ -57,14 +57,18 @@ async function getUserData() {
 }
 async function updateData() {
   let json = await getUserData();
+  try {
   console.log(json)
-  let userRank = json.data.user.league.rank;
-  userProfile.setAttribute("src", "https://tetr.io/user-content/avatars/" + json.data.user._id + ".jpg?rv=" + json.data.user.avatar_revision )
-  rankImage.setAttribute("src", `src/ranks/` + userRank + `.png`);
-  userName.innerHTML = json.data.user.username;
-  userTR.innerHTML = (Math.round(json.data.user.league.rating * 10) ) / 10;
-  globalRank.innerHTML = "#" + json.data.user.league.standing;
-  console.log(new Date().getTime())
+    let userRank = json.data.user.league.rank;
+    userProfile.setAttribute("src", "https://tetr.io/user-content/avatars/" + json.data.user._id + ".jpg?rv=" + json.data.user.avatar_revision )
+    rankImage.setAttribute("src", `src/ranks/` + userRank + `.png`);
+    userName.innerHTML = json.data.user.username;
+    userTR.innerHTML = (Math.round(json.data.user.league.rating * 10) ) / 10;
+    globalRank.innerHTML = "#" + json.data.user.league.standing;
+  }
+  catch (error) {
+    localStorage.removeItem("tetrioStatsUserData");
+  }
 }
 
 function logData() {
