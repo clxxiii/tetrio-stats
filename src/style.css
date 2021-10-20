@@ -25,15 +25,16 @@ body {
 #userProfile {
   width: 60px;
   height: 60px;
-  vertical-align: bottom;
+  vertical-align: middle;
+  border-radius: 5px;
 }
 #main {
   width: fit-content;
   height: auto;
   padding: 20px 20px 20px 20px;
   background-color: #243e25;
-  border-top: 3px solid #45794f;
-  /* box-shadow: 0 0 48px #0002; */
+  border-radius: 20px;
+  box-shadow: 0 0 12px #0006;
 }
 
 .TR {
@@ -46,21 +47,23 @@ body {
 }
 #userName {
   text-align: left;
-  font-size: 32px;
+  vertical-align: -webkit-baseline-middle;
+  font-size: 48px;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 #userTR {
   font-family: 'CB';
   text-align: left;
+  text-shadow: 0 0 10px black;
   /* padding-bottom: 15%; */
-  color: #AAAAAA;
 }
 #userRankIcon {
   display: inline;
   text-align: right;
 }
 #subscript {
-  color: #888888;
   font-size: 16px;
   font-family: 'CB'
 }
