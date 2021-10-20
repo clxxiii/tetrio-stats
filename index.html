@@ -5,12 +5,23 @@
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body onload="updateData()">
+
   <div id="main">
-    <div id="nameRankTR">
-      <span id="userName">??????</span>
-      <span id="userRankIcon"><img src="src/ranks/z.png" id="rankImage" style="width:60px;height:60px;"></img>
-      <div id="userTR">00000</span><span id=subscript><sub>TR </sub></span>
+    <div class="nameRankTR">
+      <div class="name">
+        <img id="userProfile"></img>
+        <span id="userName">??????</span>
+      </div>
+        <div class="rankTR">
+          <div id="userRankIcon"><img src="src/ranks/z.png" id="rankImage" style="width:60px;height:60px;"></img></div>
+          <div class="TR">
+            <div id="globalRank">#0000</div>
+            <div id="userTR">00000<span id=subscript><sub>TR </sub></span></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+  <script src="testjson.json"></script>
   <script src="index.js"></script>
 </body>
