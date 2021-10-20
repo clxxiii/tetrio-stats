@@ -1,7 +1,7 @@
 const rankImage = document.getElementById("rankImage");
 const userName = document.getElementById("userName");
 const userTR = document.getElementById("userTR");
-const API_URL = "https://7yortti0f2.execute-api.us-east-2.amazonaws.com/direct-to-clxxiii/api";
+const API_URL = "https://7yortti0f2.execute-api.us-east-2.amazonaws.com/api";
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 // const axios = require('axios').default;
@@ -92,6 +92,7 @@ async function getUserData() {
     let params = {
       method: 'GET',
       headers: {
+        'Accept': 'application/json',
         'Content-Type': 'application/json'
       }
     }
