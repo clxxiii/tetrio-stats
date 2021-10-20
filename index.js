@@ -1,7 +1,7 @@
 const rankImage = document.getElementById("rankImage");
 const userName = document.getElementById("userName");
 const userTR = document.getElementById("userTR");
-const API_URL = "https://7yortti0f2.execute-api.us-east-2.amazonaws.com/api";
+const API_URL = "https://7yortti0f2.execute-api.us-east-2.amazonaws.com/api?user=";
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const callTime = new Date().getTime();
@@ -30,12 +30,11 @@ async function getUserData() {
   let currentJson = JSON.parse(localStorage.getItem("tetrioStatsUserData"))
   // Set cache time to 0 if no call has been stored yet
   if (currentJson == null) {currentJson = {"cache":{"cached_until": 0}} }
+  let user = urlParams.get("user");
   // Only make a call if the current data is outdated
   console.log("Caching Information: " + currentJson.cache.cached_until + " > " + callTime)
-  if (currentJson.cache.cached_until > callTime) { console.log("using cached data"); return currentJson  }
+  if (currentJson.data.user.username == user && currentJson.cache.cached_until > callTime) { console.log("using cached data"); return currentJson  }
   else {
-    let user = urlParams.get("user");
-
     let params = {
       method: 'GET',
       headers: {
@@ -43,7 +42,7 @@ async function getUserData() {
         'Content-Type': 'application/json'
       }
     }
-    let response = await fetch(API_URL, params)
+    let response = await fetch(API_URL + user, params)
     response = await response.json();
     localStorage.setItem("tetrioStatsUserData", JSON.stringify(response));
 
