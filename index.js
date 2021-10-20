@@ -87,6 +87,7 @@ async function getUserData() {
   // Set cache time to 0 if no call has been stored yet
   if (currentJson == null) {currentJson = {"cache":{"cached_until": 0}} }
   // Only make a call if the current data is outdated
+  console.log("Caching Information: " + currentJson.cache.cached_until + " > " + callTime)
   if (currentJson.cache.cached_until > callTime) { console.log("using cached data"); return currentJson  }
   else {
     let user = urlParams.get("user");
@@ -100,9 +101,9 @@ async function getUserData() {
     }
     let response = await fetch(API_URL, params)
     response = await response.json();
-    localStorage.setItem("tetrioStatsUserData", JSON.stringify(response))
+    localStorage.setItem("tetrioStatsUserData", JSON.stringify(response));
 
-    return response
+    return response;
   }
 
 
