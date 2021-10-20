@@ -1,10 +1,10 @@
 const rankImage = document.getElementById("rankImage");
 const userName = document.getElementById("userName");
 const userTR = document.getElementById("userTR");
-const API_URL = "https://ch.tetr.io/api/users/";
+const API_URL = "https://7yortti0f2.execute-api.us-east-2.amazonaws.com/direct-to-clxxiii/api";
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
-
+// const axios = require('axios').default;
 const callTime = new Date().getTime();
 const testJson = {
    "success":true,
@@ -84,14 +84,13 @@ const rankColors = {
   "Z": "",
 };
 async function getUserData() {
-  let currentJson = testJson // JSON.parse( localStorage.getItem("tetrioProfileJson") );
-  if (testJson.cache.cached_until > callTime) { return currentJson }
+  let currentJson = testJson
+  if (testJson.cache.cached_until > callTime) { return currentJson } // Only make a call if the current data is outdated
   else {
     let user = urlParams.get("user");
 
     let params = {
       method: 'GET',
-      mode: 'no-cors',
       headers: {
         'Content-Type': 'application/json'
       }
@@ -100,6 +99,8 @@ async function getUserData() {
 
     console.log(response)
   }
+
+
 }
 async function updateData() {
   let json = testJson;
