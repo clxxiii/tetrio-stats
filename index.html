@@ -6,18 +6,17 @@
   <link rel="icon" href="https://cdn.discordapp.com/avatars/265144290240495617/caf8d14e3e82cf096d91980dce17b998.webp">
 </head>
 <body onload="updateData()">
-
-  <div id="main">
+  <div id="main" class="main">
     <div class="nameRankTR" id="nameRankTR">
       <div class="name">
-        <img id="userProfile"></img>
-        <span id="userName">??????</span>
+        <img id="userProfile" class="closed"></img>
+        <span id="userName" class="closed">??????</span>
       </div>
         <div class="rankTR">
-          <div id="userRankIcon"><img src="src/ranks/z.png" id="rankImage" style="width:60px;height:60px;"></img></div>
-          <div class="TR">
+          <div id="userRankIcon"><img src="src/ranks/z.png" id="rankImage" class="closed" style="width:60px;height:60px;"></img></div>
+          <div class="TR closed" id="TR">
             <div id="globalRank">#0000</div>
-            <div id="userTR">00000<span id=subscript><sub>TR </sub></span></div>
+            <div id="userTR">00000</div>
           </div>
         </div>
       </div>

@@ -13,6 +13,9 @@
   font-family: 'CB';
 }
 
+#main,  #userName, #userRankIcon, #TR {
+  transition: 0.3s ease-in-out;
+}
 body {
     font-family: 'HUN';
     font-size: 18px;
@@ -21,25 +24,32 @@ body {
 }
 .nameRankTR {
   display: flex;
-  gap: 2rem;
-  filter: blur(5px);
+  /* filter: blur(5px); */
   transition: 0.3s ease-in-out;
 }
+
 #userProfile {
   width: 60px;
   height: 60px;
   vertical-align: middle;
   border-radius: 5px;
+  filter: opacity(0);
 }
+.closed {
+  font-size: 0 !important;
+  filter: opacity(0);
+  width: 0 !important;
+}
+
 #main {
   width: fit-content;
+  min-width: 60px;
   height: 60px;
   margin: 20px;
   padding: 20px;
-  background-color: #243e25;
+  background-color: #828282;
   border-radius: 20px;
   box-shadow: 0 0 12px #0006;
-  transition: 0.3s ease-in-out;
 }
 
 .TR {
@@ -61,12 +71,13 @@ body {
 #userTR {
   font-family: 'CB';
   text-align: left;
-  text-shadow: 0 0 10px black;
+  text-shadow: 0 0 10px #0006;
   /* padding-bottom: 15%; */
 }
 #userRankIcon {
   display: inline;
   text-align: right;
+  filter: drop-shadow(0 0 5px #0006);
 }
 #subscript {
   font-size: 16px;
