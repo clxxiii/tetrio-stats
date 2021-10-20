@@ -84,7 +84,10 @@ const rankColors = {
 };
 async function getUserData() {
   let currentJson = JSON.parse(localStorage.getItem("tetrioStatsUserData"))
-  if (currentJson.cache.cached_until > callTime) { console.log("using cached data"); return currentJson  } // Only make a call if the current data is outdated
+  // Set cache time to 0 if no call has been stored yet
+  if (currentJson == null) {currentJson = {"cache":{"cached_until": 0}} }
+  // Only make a call if the current data is outdated
+  if (currentJson.cache.cached_until > callTime) { console.log("using cached data"); return currentJson  }
   else {
     let user = urlParams.get("user");
 
@@ -106,7 +109,7 @@ async function getUserData() {
 }
 async function updateData() {
   let json = getUserData();
-
+  console.log(json)
   let userRank = json.data.user.league.rank;
   rankImage.setAttribute("src", `src/ranks/` + userRank + `.png`);
   userName.innerHTML = json.data.user.username;
