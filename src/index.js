@@ -31,26 +31,31 @@ const rankColors = {
   "Z": "",
 };
 async function getUserData() {
-  let currentJson = JSON.parse(localStorage.getItem("tetrioStatsUserData"))
-  // Set cache time to 0 if no call has been stored yet
-  if (currentJson == null) currentJson = { "data":{"user":{"username": 0}}, "cache":{"cached_until": 0} }
-  let user = urlParams.get("user");
-  // Only make a call if the current data is outdated
-  console.log("Caching Information: " + currentJson.cache.cached_until + " > " + callTime)
-  if (currentJson.data.user.username == user && currentJson.cache.cached_until > callTime) { console.log("using cached data"); return currentJson  }
-  else {
-    let params = {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
+  try {
+    let currentJson = JSON.parse(localStorage.getItem("tetrioStatsUserData"))
+    // Set cache time to 0 if no call has been stored yet
+    if (currentJson == null) currentJson = { "data":{"user":{"username": 0}}, "cache":{"cached_until": 0} }
+    let user = urlParams.get("user");
+    // Only make a call if the current data is outdated
+    console.log("Caching Information: " + currentJson.cache.cached_until + " > " + callTime)
+    if (currentJson.data.user.username == user && currentJson.cache.cached_until > callTime) { console.log("using cached data"); return currentJson  }
+    else {
+      let params = {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
       }
-    }
-    let response = await fetch(API_URL + user, params)
-    response = await response.json();
-    localStorage.setItem("tetrioStatsUserData", JSON.stringify(response));
+      let response = await fetch(API_URL + user, params)
+      response = await response.json();
+      localStorage.setItem("tetrioStatsUserData", JSON.stringify(response));
 
-    return response;
+      return response;
+    }
+    catch (error) {
+      localStorage.removeItem("tetrioStatsUserData");
+    }
   }
 
 
