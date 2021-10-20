@@ -6,11 +6,18 @@ const userProfile = document.getElementById("userProfile");
 const globalRank = document.getElementById("globalRank");
 const nameRankTR = document.getElementById("nameRankTR");
 const tr = document.getElementById("TR");
+const apm = document.getElementById("apm");
+const pps = document.getElementById("pps");
+const vs = document.getElementById("vs");
+const wl = document.getElementById("wl");
+const stats = document.getElementById("stats");
 
 const API_URL = "https://7yortti0f2.execute-api.us-east-2.amazonaws.com/api?user=";
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const callTime = new Date().getTime();
+
+const testjson = {"success":true,"data":{"user":{"_id":"607757ae8ce31d6ec6610f8a","username":"fgam3r","role":"user","ts":"2021-04-14T20:59:26.481Z","badges":[],"xp":990344,"gamesplayed":461,"gameswon":187,"gametime":285664.5182222221,"country":"NL","supporter_tier":0,"verified":false,"league":{"gamesplayed":332,"gameswon":175,"rating":10661.717322730039,"glicko":1422.2132067729272,"rd":70.700843752591,"rank":"a-","apm":20.6,"pps":0.96,"vs":42.31,"decaying":false,"standing":16504,"percentile":0.5212077187884913,"standing_local":97,"prev_rank":"b+","prev_at":17098,"next_rank":"a","next_at":14565,"percentile_rank":"a-"},"avatar_revision":1618475770146,"friend_count":12}},"cache":{"status":"miss","cached_at":1634758582092,"cached_until":1634758882092}}
 
 let user = urlParams.get("user");
 const rankColors = {
@@ -70,10 +77,11 @@ async function updateData() {
     // Animation
     userProfile.style.filter = "opacity(100)";
     nameRankTR.style.gap = "4rem";
-    userProfile.classList.remove("closed")
-    tr.classList.remove("closed")
-    userName.classList.remove("closed")
-    rankImage.classList.remove("closed")
+    userProfile.classList.remove("closed");
+    tr.classList.remove("closed");
+    userName.classList.remove("closed");
+    rankImage.classList.remove("closed");
+    stats.classList.remove("closed");
     nameRankTR.style.filter = "blur(0px)";
 
     let userRank = json.data.user.league.rank;
@@ -89,6 +97,11 @@ async function updateData() {
     userName.innerHTML = json.data.user.username;
     userTR.innerHTML = (Math.round(json.data.user.league.rating * 10) ) / 10 + "<span id=subscript><sub>TR </sub></span>";
     globalRank.innerHTML = "#" + json.data.user.league.standing;
+    apm.innerHTML = json.data.user.league.apm;
+    pps.innerHTML = json.data.user.league.pps;
+    vs.innerHTML = json.data.user.league.vs;
+    let winLoss = Math.round(( json.data.user.league.gameswon / json.data.user.league.gamesplayed ) * 100 ) / 100
+    wl.innerHTML = winLoss + "<span id=subscript><sub> (" + json.data.user.league.gameswon + "/" + json.data.user.league.gamesplayed + ")</sub></span>";
   }
   catch (error) {
     localStorage.removeItem("tetrioStatsUserData-" + user);
