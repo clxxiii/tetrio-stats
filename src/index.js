@@ -4,6 +4,7 @@ const userName = document.getElementById("userName");
 const userTR = document.getElementById("userTR");
 const userProfile = document.getElementById("userProfile");
 const globalRank = document.getElementById("globalRank");
+const nameRankTR = document.getElementById("nameRankTR");
 
 const API_URL = "https://7yortti0f2.execute-api.us-east-2.amazonaws.com/api?user=";
 const queryString = window.location.search;
@@ -62,10 +63,11 @@ async function getUserData() {
   }
 
 async function updateData() {
-  let json = await getUserData();
-
+  // let json = await getUserData();
+  let json = testjson;
   try {
     console.log(json)
+    nameRankTR.style.filter = "blur(0px)";
     let userRank = json.data.user.league.rank;
     main.style.background = rankColors[userRank]
     if (!(json.data.user.avatar_revision == undefined)) {
