@@ -15,7 +15,6 @@ const stats = document.getElementById("stats");
 const API_URL = "https://7yortti0f2.execute-api.us-east-2.amazonaws.com/api?user=";
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
-const callTime = new Date().getTime();
 
 let user = urlParams.get("user");
 const rankColors = {
@@ -41,6 +40,7 @@ const rankColors = {
 
 async function getUserData() {
   try {
+    let callTime = new Date().getTime();
     let currentJson = JSON.parse(localStorage.getItem("tetrioStatsUserData-" + user))
     // Set cache time to 0 if no call has been stored yet
     if (currentJson == null) currentJson = { "data":{"user":{"username": 0}}, "cache":{"cached_until": 0} }
@@ -104,5 +104,5 @@ async function updateData() {
   catch (error) {
     localStorage.removeItem("tetrioStatsUserData-" + user);
   }
-  setTimeout(updateData, 60000)
+  setTimeout(updateData, 1000)
 }
