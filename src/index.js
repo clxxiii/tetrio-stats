@@ -104,5 +104,5 @@ async function updateData() {
   catch (error) {
     localStorage.removeItem("tetrioStatsUserData-" + user);
   }
-  setTimeout(updateData, 1000)
+  setTimeout(updateData, 60000)
 }
